@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>top page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style>
+		h1 {
+			font-size: 18pt;
+			font-weight: bold;
+			color: gray;
+		}
+		body {
+			font-size: 13pt;
+			color: gray;
+			margin: 5px 25px;
+		}
+		pre {
+			font-size: 13pt;
+			color: gray;
+			padding: 5px 10px;
+			border: 1px solid gray;
+		}
+		th {
+			margin: 5px;
+			padding: 3px;
+		}
+		tr {
+			padding:5px;
+			color: white;
+			background: darkgray;
+		}
+		td {
+			padding: 5px;
+			color: pink;
+			background: #f0f0f0;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 th:text="#{content.title}">Hello page</h1>
+	<h2 th:text="#{content.message}">Hello page</h2>
+	<pre class="msg" th:text="${msg}">please wait...</pre>
+	<table th:object=${obj}>
+		<tr><th>ID</th><td th:text="*{id}"></td></tr>
+		<tr><th>NAME</th><td th:text="*{name}"></td></tr>
+		<tr><th>VALUE</th><td th:text="*{value}"></td></tr>
+	</table>
+	<div th:object="${obj}">
+		<p th:text="|my name is *{name}. mail address is *{value}.|">message.</p>
+		<p th:utext="${msg}">message.</p>
+	</div>
+
+	<form method="post" action="/">
+		<div>
+			<input type="checkbox" name="check1" id="check1">
+			<label for="check1">チェック</label>
+		</div>
+		<div>
+			<input type="radio" name="radio1" id="radioA" value="male">
+			<label for="radioA">男性</label>
+		</div>
+		<div>
+			<input type="radio" name="radio1" id="radioB" value="female">
+			<label for="radioB">女性</label>
+		</div>
+		<div>
+			<select id="select1" name="select1" size="3">
+				<option value="Windows">Windows</option>
+				<option value="Mac">Mac</option>
+				<option value="Linux">Linux</option>
+			</select>
+			<select id="select2" name="select2" size="3" multiple>
+				<option value="Android">Android</option>
+				<option value="iPhone">iPhone</option>
+				<option value="Winfone">Winfone</option>
+			</select>
+		</div>
+		<input type="submit" value="Click!">
+	</form>
+	<p th:text="${new java.util.Date().toString()}"></p>
+	<p th:text="${#dates.format(new java.util.Date(),'dd/MMM/yyyy HH:mm')}"></p>
+	<p th:text="${#numbers.formatInteger(1234,7)}"></p>
+	<p th:text="${#strings.toUpperCase('Welcome to Spring.')}"></p>
+	<!-- <p th:text="'from parameter... id=' + ${param.id + ', name=' + param.name[0]}"></p> -->
+	<p>
+		<a th:href="@{'/?id={id}'(id=99999)}">link</a>
+	</p>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
